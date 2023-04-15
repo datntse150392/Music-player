@@ -13,6 +13,8 @@ const prevBtn = $('.btn-prev');
 const randomBtn = $('.btn-random');
 const repeatBtn = $('.btn-repeat');
 const playlist = $('.playlist');
+const progress_start_time = $('.progress-start-time');
+const progress_start_end = $('.progress-start-end');
 
 const app = {
     currentIndex: 0,
@@ -116,9 +118,11 @@ const app = {
         }
 
 
-        // Tien do cua bai hat
+        // Tiến độ của bài hát + thiết lặp thêm thời gian chạy
         audio.ontimeupdate = function () {
             progress.value = audio.currentTime / audio.duration * 100;
+            _this.startTime(audio.currentTime);
+            _this.endTime(audio.duration);
         };
 
 
@@ -226,6 +230,25 @@ const app = {
         this.loadCurrentSong();
     },
 
+    // Chạy time trên progress
+    // timeStart
+    startTime: function(e) {
+        let startMinute = Math.floor(e/60);
+        let startSecond = Math.floor(e%60);
+
+        letdisplayStartMinute = startMinute < 10 ? `0 ${startMinute}` : `${startMinute}`;
+        letdisplaySstartSecond = startSecond < 10 ? `0 ${startSecond}` : `${startSecond}`;    
+        progress_start_time.textContent = `${letdisplayStartMinute} : ${letdisplaySstartSecond}`;
+    },
+    // timeEnd
+    endTime: function(e) {
+        let startMinute = Math.floor(e/60);
+        let startSecond = Math.floor(e%60);
+
+        letdisplayStartMinute = startMinute < 10 ? `0 ${startMinute}` : `${startMinute}`;
+        letdisplaySstartSecond = startSecond < 10 ? `0 ${startSecond}` : `${startSecond}`;    
+        progress_start_end.textContent = `${letdisplayStartMinute} : ${letdisplaySstartSecond}`;
+    },
     start: function () {
         // Định nghĩa các thuộc tính cho Object;
         this.defineProperties();
