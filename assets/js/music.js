@@ -15,6 +15,7 @@ const repeatBtn = $('.btn-repeat');
 const playlist = $('.playlist');
 const progress_start_time = $('.progress-start-time');
 const progress_start_end = $('.progress-start-end');
+const progress_volume = $('.volume-progress');
 
 const app = {
     currentIndex: 0,
@@ -132,6 +133,11 @@ const app = {
             audio.currentTime = seekTime;
         }
 
+        // Xử lí khi thay đổi âm lượng
+        progress_volume.onchange = function (e) {
+            audio.volume = e.target.value / 100;
+        }
+
         // Xu li khi next bai hat
         nextBtn.onclick = function () {
             if (_this.isRandomSong) {
@@ -205,7 +211,6 @@ const app = {
         heading.textContent = this.currentSong.name;
         cdThumb.style.backgroundImage = `url('${this.currentSong.image}'`;
         audio.src = this.currentSong.path;
-
     },
     nextSong: function () {
         this.currentIndex++;
@@ -232,22 +237,22 @@ const app = {
 
     // Chạy time trên progress
     // timeStart
-    startTime: function(e) {
-        let startMinute = Math.floor(e/60);
-        let startSecond = Math.floor(e%60);
+    startTime: function (e) {
+        let startMinute = Math.floor(e / 60);
+        let startSecond = Math.floor(e % 60);
 
         letdisplayStartMinute = startMinute < 10 ? `0 ${startMinute}` : `${startMinute}`;
-        letdisplaySstartSecond = startSecond < 10 ? `0 ${startSecond}` : `${startSecond}`;    
+        letdisplaySstartSecond = startSecond < 10 ? `0 ${startSecond}` : `${startSecond}`;
         progress_start_time.textContent = `${letdisplayStartMinute} : ${letdisplaySstartSecond}`;
     },
     // timeEnd
-    endTime: function(e) {
-        let startMinute = Math.floor(e/60);
-        let startSecond = Math.floor(e%60);
+    endTime: function (e) {
+            let startMinute = Math.floor(e / 60);
+            let startSecond = Math.floor(e % 60);
 
-        letdisplayStartMinute = startMinute < 10 ? `0 ${startMinute}` : `${startMinute}`;
-        letdisplaySstartSecond = startSecond < 10 ? `0 ${startSecond}` : `${startSecond}`;    
-        progress_start_end.textContent = `${letdisplayStartMinute} : ${letdisplaySstartSecond}`;
+            letdisplayStartMinute = startMinute < 10 ? `0 ${startMinute}` : `${startMinute}`;
+            letdisplaySstartSecond = startSecond < 10 ? `0 ${startSecond}` : `${startSecond}`;
+            progress_start_end.textContent = `${letdisplayStartMinute} : ${letdisplaySstartSecond}`;
     },
     start: function () {
         // Định nghĩa các thuộc tính cho Object;

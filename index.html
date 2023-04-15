@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div class="player">    
+    <div class="player">
         <!-- Dashboard -->
         <div class="dashboard">
             <video autoplay loop muted class="music-card__background" src="./assets/img/background-video.mp4"></video>
@@ -30,7 +30,15 @@
                     style="background-image: url('https://i.ytimg.com/vi/jTLhQf5KJSc/maxresdefault.jpg')">
                 </div>
             </div>
-
+            <div class="volume-block">
+                <div class="btn btn-volume">
+                    <div class="volume-icon">
+                        <i class="fa-solid fa-volume-high btn-volume__high"></i>
+                        <i class="fa-solid fa-volume-xmark btn-volume__mute" style="display: none"></i>
+                    </div>
+                    <input class="volume-progress" type="range" value="100" step="1" min="0" max="100" />
+                </div>
+            </div>
             <!-- Control -->
             <div class="control">
                 <div class="btn btn-repeat">
@@ -51,8 +59,8 @@
                 </div>
             </div>
 
-            <input id="progress" class="progress" type="range" value="0" step="1" min="0" max="100">
 
+            <input id="progress" class="progress" type="range" value="0" step="1" min="0" max="100">
             <div class="progress-time">
                 <div class="progress-start-time">00:00</div>
                 <div class="progress-start-end">00:00</div>
